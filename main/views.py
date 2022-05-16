@@ -1,9 +1,8 @@
-from typing import List
 from django.shortcuts import render
 from django.template import context
 from django.views import View
-from django.views.generic import MonthArchiveView
-from .models import DailyStory, StoryItem
+from django.views.generic import MonthArchiveView, CreateView
+from .models import DailyStory, Post, StoryItem
 
 import json
 from django.core import serializers
@@ -17,20 +16,119 @@ from .serializers import DailyStorySerializer, StoryItemSerializer
 
 class HomePageView(GenericAPIView, View):
     def get(self, request):
-        stories_all = DailyStory.objects.all().order_by("-date")
-        storiy_item_all = StoryItem.objects.all().order_by("-date")
-        stories = DailyStorySerializer(stories_all, many=True)
-        story_items = StoryItemSerializer(storiy_item_all, many=True)
+        posts = Post.objects.all().order_by("-date")
+        stories = DailyStory.objects.all().order_by("-date")
+        story_items = StoryItem.objects.all().order_by("-date")
+        stories_json = DailyStorySerializer(stories, many=True)
+        story_items_json = StoryItemSerializer(story_items, many=True)
+
+        # Post.objects.create()
+
+
 
         context = {
-            'stories_all':stories_all,
-            "stories":json.dumps(stories.data),
-            # 'stories':stories,
-            'story_items':json.dumps(story_items.data),
+            "posts":posts,
+            "stories":stories,
+            "stories_items":story_items,
+            "stories_json":json.dumps(stories_json.data),
+            "story_items_json":json.dumps(story_items_json.data),
         }
         return render(request, 'index.html', context=context)
         
         
+
+
+
+
+
+
+
+# from parler.views import ViewUrlMixin, TranslatableUpdateView
+# from parler.utils.context import switch_language
+
+# class ArticleEditView(ViewUrlMixin, TranslatableUpdateView):
+#     view_url_name = 'article:edit'
+
+#     def get_view_url(self):
+#         with switch_language(self.object, get_language()):
+#             return reverse(self.view_url_name, kwargs={'slug': self.object.slug})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Trash
+
+
+# queryset = MyModel.objects.annotate(
+#     created_at_date=TruncDate('created_at'),
+# ).order_by('created_at')
+# groupedset = groupby(queryset, attrgetter('created_at_date'))
+
+
+#   console.log('--- Stories')
+    # for (let i = 0; i < result.length; i++) {
+    #   console.log(result[i]['pk'])
+    #   let element = result[i]['pk'];
+    #   console.log(story_items[])
+    #   // let storyitem = story_items['pk']
+      
+    # }
+#   // console.log(x['pk'])
+
 
 
     # result = {}
@@ -51,30 +149,4 @@ class HomePageView(GenericAPIView, View):
     #     'story_items':story_items,
     # }
     # st = json.dump(people, context)
-
-
-
-
-
-
-
-
-
-
-
-# queryset = MyModel.objects.annotate(
-#     created_at_date=TruncDate('created_at'),
-# ).order_by('created_at')
-# groupedset = groupby(queryset, attrgetter('created_at_date'))
-
-
-#   console.log('--- Stories')
-    # for (let i = 0; i < result.length; i++) {
-    #   console.log(result[i]['pk'])
-    #   let element = result[i]['pk'];
-    #   console.log(story_items[])
-    #   // let storyitem = story_items['pk']
-      
-    # }
-#   // console.log(x['pk'])
 

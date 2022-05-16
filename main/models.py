@@ -1,17 +1,18 @@
-from distutils.command.upload import upload
-from statistics import mode
-from tabnanny import verbose
-from django.db import models
-
+from django.db import models    
+from django.utils.translation import gettext as _
 # Create your models here.
 
+
+
+
+
+
+# Class DailyStory stories and news sections
 class DailyStory(models.Model):
     title = models.CharField('title', max_length=100)
-    slug = models.SlugField('*', unique=True, blank=True)
+    slug = models.SlugField('slug', unique=True, blank=True)
     preview = models.ImageField("Image Preview", upload_to ='preview-images/%Y/%m/%d/', blank=True)
-    # video = models.FileField('Document', upload_to='story-documents/% Y/% m/% d/')
     date = models.DateField('Date',)
-    # time = models.TimeField('Time', auto_now=True)
 
     def __str__(self):
         return self.title
@@ -21,12 +22,13 @@ class DailyStory(models.Model):
         verbose_name_plural = 'Stories'
 
 
-class StoryItem(models.Model):
-    TYPES = [
-        ('video', 'video'),
-        ('photo', 'photo'),
-    ]
 
+
+
+
+# Class Story items model connected to DailyStory 
+class StoryItem(models.Model):
+    TYPES = [(_('video'), _('video')),(_('photo'), _('photo')),]
     story = models.ForeignKey(DailyStory, on_delete=models.CASCADE, related_name='storyitems',blank=True)
     title = models.CharField('Story Item Title', max_length=200, blank=True)
     type = models.CharField(max_length=100,choices=TYPES,default="video",)
@@ -39,3 +41,85 @@ class StoryItem(models.Model):
     class Meta:
         verbose_name = 'StoryItem'
         verbose_name = 'StoryItems'
+
+
+
+
+
+
+
+
+
+
+
+# Category model
+class Category(models.Model):
+    name = models.CharField("Name", max_length=200, blank=True)
+    slug = models.SlugField("*", max_length=200, blank=True)
+
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        verbose_name = "Category"
+        verbose_name_plural = "Categories"
+
+
+
+
+
+
+
+ # Tag model
+class Tag(models.Model):
+    name = models.CharField('Name', max_length=200)
+    slug = models.SlugField("*", unique=True, blank=True)
+    image = models.ImageField('Image', upload_to="Tag-images/", blank=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Tag"    
+        verbose_name = "Tags"    
+
+
+
+
+
+
+
+
+
+class Post(models.Model):
+    category = models.ForeignKey('Category', on_delete=models.CASCADE, blank=True)
+    title = models.CharField('Title', max_length=400, blank=True)
+    slug = models.SlugField("*", unique=True, blank=True)
+    body = models.TextField(blank=True,)
+    author = models.CharField("Author Name", max_length=400, blank=True)
+    tags = models.ManyToManyField(Tag,related_name='posts', blank=True)
+    likes = models.PositiveIntegerField("Likes", default=0 )
+    views = models.PositiveIntegerField('Views', default=0)
+    date = models.DateTimeField('Date', blank=True, auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.category.name} - {self.title}"
+
+
+    class Meta:
+        verbose_name = "Post"
+        verbose_name = "Posts"
+
+
+
+
+class PostImage(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='postimages')
+    file = models.FileField('File', upload_to='Post-previews/%Y/%m/%d/', blank=True)
+
+    def __str__(self):
+        return self.post.category.name
+
+    class Meta:
+        verbose_name = 'Post Image'
+        verbose_name_plural = 'Post Images'

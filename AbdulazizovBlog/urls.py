@@ -13,6 +13,7 @@ urlpatterns = [
 
 urlpatterns += i18n_patterns(
     path('', include('main.urls', namespace='main')),
+    path("ckeditor5/", include('django_ckeditor_5.urls')),
     prefix_default_language=False,
 )
 
