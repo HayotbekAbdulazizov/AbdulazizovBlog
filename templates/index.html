@@ -1,37 +1,75 @@
-
-
-
-
-
-
+{% extends 'wrapper.html' %}
+{% load static %}
 {% block content %}
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container">  
+
+<!-- Posts -->
+<h5> Posts </h5>
+{% for p in posts %}
+
+{% autoescape off %}
+<a href="">
+    {{p.title}}
+</a>    
+{% endautoescape %}
+{% endfor %}
+    
     
 
-<h3> Hello, World !!! </h3>
-
-
-{% for i in stories %}
-    <h5> {{i.title}}   id-{{i.id}} </h5>
-    <img src="{{i.preview.url}}" alt="" width="40" height="40">
-    <br>
-{% endfor %}
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
 
 <br><br><br><br><br>
-<h4> Posts </h4>
-
-{% for p in posts %}
-    {{p.title}}
-    {{p.title_uz}}
-    {{p.title_ru}}
-{% endfor %}
-    
-    
 
 
-{% endblock content %}
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {% endblock content %}

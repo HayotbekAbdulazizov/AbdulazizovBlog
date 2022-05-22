@@ -6,7 +6,7 @@ app_name = 'main'
 
 urlpatterns = [
 	path('',views.HomePageView.as_view(), name='home'),
-	# path('',views.HomePageView, name='home'),
+	path('post/<slug>', views.PostDetailView.as_view(), name='product_detail'),
 
 
 	# path('about/',views.AboutPageView.as_view(), name='about'),

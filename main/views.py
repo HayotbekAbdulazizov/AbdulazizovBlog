@@ -35,7 +35,50 @@ class HomePageView(GenericAPIView, View):
         }
         return render(request, 'index.html', context=context)
         
+
+
+
+
+
+class PostDetailView(View):
+
+    def get(self, request, slug):
+        # posts = Post.objects.all().order_by("-date")
+        # stories = DailyStory.objects.all().order_by("-date")
+        # story_items = StoryItem.objects.all().order_by("-date")
+        # stories_json = DailyStorySerializer(stories, many=True)
+        # story_items_json = StoryItemSerializer(story_items, many=True)
+        # object = Post.objects.get(slug=)
+
+        context = {
+            # "posts":posts,
+            # "stories":stories,
+            # "stories_items":story_items,
+            # "stories_json":json.dumps(stories_json.data),
+            # "story_items_json":json.dumps(story_items_json.data),
+            'object':Post.objects.get(slug=slug)
+        }
+        return render(request, 'post_detail.html', context=context)
         
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
