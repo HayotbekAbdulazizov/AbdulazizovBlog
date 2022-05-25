@@ -1,0 +1,37 @@
+
+{% extends "wrapper.html"|pjax:request %}
+
+
+
+
+
+{% block content %}
+    
+
+<h3> Hello, World !!! </h3>
+
+
+{% for i in stories %}
+    <h5> {{i.title}}   id-{{i.id}} </h5>
+    <img src="{{i.preview.url}}" alt="" width="40" height="40">
+    <br>
+{% endfor %}
+
+
+
+
+
+
+<br><br><br><br><br>
+<h4> Posts </h4>
+
+{% for p in posts %}
+    <a href="{% url 'main:post_detail' p.slug %}">{{p.slug|safe}} </a>
+    {{p.title|safe}} <br>
+{% endfor %}
+    
+    
+
+
+{% endblock content %}
+    

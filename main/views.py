@@ -20,18 +20,18 @@ from .serializers import DailyStorySerializer, StoryItemSerializer
 
 # @pjax()
 def home(request):
-    # posts = Post.objects.all().order_by("-date")
-    # stories = DailyStory.objects.all().order_by("-date")
-    # story_items = StoryItem.objects.all().order_by("-date")
-    # stories_json = DailyStorySerializer(stories, many=True)
-    # story_items_json = StoryItemSerializer(story_items, many=True)
+    posts = Post.objects.all().order_by("-date")
+    stories = DailyStory.objects.all().order_by("-date")
+    story_items = StoryItem.objects.all().order_by("-date")
+    stories_json = DailyStorySerializer(stories, many=True)
+    story_items_json = StoryItemSerializer(story_items, many=True)
 
     context = {
-    #     "posts":posts,
-    #     "stories":stories,
-    #     "stories_items":story_items,
-    #     "stories_json":json.dumps(stories_json.data),
-    #     "story_items_json":json.dumps(story_items_json.data),
+        "posts":posts,
+        "stories":stories,
+        "stories_items":story_items,
+        "stories_json":json.dumps(stories_json.data),
+        "story_items_json":json.dumps(story_items_json.data),
     }
 
     return render(request, "index.html", context)
@@ -53,7 +53,7 @@ def about(request):
         "status":200,
     }
 
-    return render(request, "site_base2.html", context)
+    return render(request, "about.html", context)
 
 
 
@@ -125,6 +125,10 @@ def test(request):
 	# }
 	# return render(request, 'post_detail.html', context)
 # @pjax()
+
+
+
+
 def postDetailView(request, post_slug):
     return TemplateResponse(request, "post_detail.html", {'post':post_slug})
 

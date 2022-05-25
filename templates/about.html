@@ -3,14 +3,5 @@
 {% block title %}{{ page_name }}{% endblock %}
 
 {% block content %}
-
-
-    
-    {% for p in posts %}
-        <a href="{% url 'main:post_detail' p.slug %}"> {{p.slug}} {{p.title}} </a>
-    {% endfor %}
-        
-
-
     <h1>{{ page_name }}</h1>
 {% endblock %}
