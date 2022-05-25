@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <title> {% block title %} ABD {% endblock title %} </title> -->
+    <!-- <title>ABD</title> -->
+</head>
+<body>
+    {% load i18n parler_tags %}
+
+    <ul>
+        {% for lang_code, title in LANGUAGES %}
+            {% get_language_info for lang_code as lang %}
+            {% get_translated_url lang_code as tr_url %}
+            {% if tr_url %}<li{% if lang_code == LANGUAGE_CODE %} class="is-selected"{% endif %}><a href="{{ tr_url }}" hreflang="{{ lang_code }}">{{ lang.name_local|capfirst }}</a></li>{% endif %}
+        {% endfor %}
+    </ul>
+    {% block content %}
+        
+    {% endblock content %}
+
+</body>
+</html>
