@@ -1,5 +1,6 @@
 from django.db import models    
 from django.utils.translation import gettext as _
+from django.urls import reverse
 # Create your models here.
 
 
@@ -105,6 +106,8 @@ class Post(models.Model):
     def __str__(self):
         return f"{self.category.name} - {self.title}"
 
+    def get_absolute_url(self):
+        return reverse('main:post_detail', kwargs={'post_slug':self.slug})
 
     class Meta:
         verbose_name = "Post"

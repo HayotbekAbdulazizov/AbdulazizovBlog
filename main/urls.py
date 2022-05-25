@@ -5,8 +5,11 @@ from django.utils.translation import gettext as _
 app_name = 'main'
 
 urlpatterns = [
-	path('',views.HomePageView.as_view(), name='home'),
-	path('post/<slug>', views.PostDetailView.as_view(), name='product_detail'),
+	# path('',views.HomePageView.as_view(), name='home'),
+	path('',views.home, name='home'),
+	path('about/',views.about, name='about'),
+	path('post/<slug:post_slug>', views.postDetailView, name='post_detail'),
+	path('test/', views.test, name='test'),
 
 
 	# path('about/',views.AboutPageView.as_view(), name='about'),

@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.template.response import TemplateResponse
 from django.template import context
 from django.views import View
 from django.views.generic import MonthArchiveView, CreateView
@@ -14,54 +15,196 @@ from .serializers import DailyStorySerializer, StoryItemSerializer
 
 
 
-class HomePageView(GenericAPIView, View):
-    def get(self, request):
-        posts = Post.objects.all().order_by("-date")
-        stories = DailyStory.objects.all().order_by("-date")
-        story_items = StoryItem.objects.all().order_by("-date")
-        stories_json = DailyStorySerializer(stories, many=True)
-        story_items_json = StoryItemSerializer(story_items, many=True)
 
-        # Post.objects.create()
+# from djpjax import pjax, PJAXResponseMixin
+
+# @pjax()
+def home(request):
+    # posts = Post.objects.all().order_by("-date")
+    # stories = DailyStory.objects.all().order_by("-date")
+    # story_items = StoryItem.objects.all().order_by("-date")
+    # stories_json = DailyStorySerializer(stories, many=True)
+    # story_items_json = StoryItemSerializer(story_items, many=True)
+
+    context = {
+    #     "posts":posts,
+    #     "stories":stories,
+    #     "stories_items":story_items,
+    #     "stories_json":json.dumps(stories_json.data),
+    #     "story_items_json":json.dumps(story_items_json.data),
+    }
+
+    return render(request, "index.html", context)
+
+
+def about(request):
+    # posts = Post.objects.all().order_by("-date")
+    # stories = DailyStory.objects.all().order_by("-date")
+    # story_items = StoryItem.objects.all().order_by("-date")
+    # stories_json = DailyStorySerializer(stories, many=True)
+    # story_items_json = StoryItemSerializer(story_items, many=True)
+
+    context = {
+        # "posts":posts,
+        # "stories":stories,
+        # "stories_items":story_items,
+        # "stories_json":json.dumps(stories_json.data),
+        # "story_items_json":json.dumps(story_items_json.data),
+        "status":200,
+    }
+
+    return render(request, "site_base2.html", context)
 
 
 
-        context = {
-            "posts":posts,
-            "stories":stories,
-            "stories_items":story_items,
-            "stories_json":json.dumps(stories_json.data),
-            "story_items_json":json.dumps(story_items_json.data),
-        }
-        return render(request, 'index.html', context=context)
+
+
+
+
+
+def test(request):
+    # posts = Post.objects.all().order_by("-date")
+    # stories = DailyStory.objects.all().order_by("-date")
+    # story_items = StoryItem.objects.all().order_by("-date")
+    # stories_json = DailyStorySerializer(stories, many=True)
+    # story_items_json = StoryItemSerializer(story_items, many=True)
+
+    context = {
+        # "posts":posts,
+        # "stories":stories,
+        # "stories_items":story_items,
+        # "stories_json":json.dumps(stories_json.data),
+        # "story_items_json":json.dumps(story_items_json.data),
+        "status":200,
+    }
+
+    return render(request, "test.html", context)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# class HomePageView(GenericAPIView, View):
+#     def get(self, request):
+#         posts = Post.objects.all().order_by("-date")
+#         stories = DailyStory.objects.all().order_by("-date")
+#         story_items = StoryItem.objects.all().order_by("-date")
+#         stories_json = DailyStorySerializer(stories, many=True)
+#         story_items_json = StoryItemSerializer(story_items, many=True)
+
+#         # Post.objects.create()
+
+
+
+#         context = {
+#             "posts":posts,
+#             "stories":stories,
+#             "stories_items":story_items,
+#             "stories_json":json.dumps(stories_json.data),
+#             "story_items_json":json.dumps(story_items_json.data),
+#         }
+        # return render(request, 'index.html', context=context)
         
 
 
 
 
 
-class PostDetailView(View):
+# def postDetailView(request, post_slug):
+	# context = {
+		# 'post':post_slug,
+	# }
+	# return render(request, 'post_detail.html', context)
+# @pjax()
+def postDetailView(request, post_slug):
+    return TemplateResponse(request, "post_detail.html", {'post':post_slug})
 
-    def get(self, request, slug):
-        # posts = Post.objects.all().order_by("-date")
-        # stories = DailyStory.objects.all().order_by("-date")
-        # story_items = StoryItem.objects.all().order_by("-date")
-        # stories_json = DailyStorySerializer(stories, many=True)
-        # story_items_json = StoryItemSerializer(story_items, many=True)
-        # object = Post.objects.get(slug=)
+        
+        
 
-        context = {
-            # "posts":posts,
-            # "stories":stories,
-            # "stories_items":story_items,
-            # "stories_json":json.dumps(stories_json.data),
-            # "story_items_json":json.dumps(story_items_json.data),
-            'object':Post.objects.get(slug=slug)
-        }
-        return render(request, 'post_detail.html', context=context)
-        
-        
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

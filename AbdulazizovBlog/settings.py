@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # Local
     'main',
     'modeltranslation',
+    "easy_pjax",
 ]
 
 MIDDLEWARE = [
@@ -63,9 +64,13 @@ TEMPLATES = [
         'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
+            "builtins": [
+                "easy_pjax.templatetags.pjax_tags"
+            ],
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request',
+                    "django.template.context_processors.request",
+                    "django.template.context_processors.static",
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
