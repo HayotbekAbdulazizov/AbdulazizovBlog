@@ -1,7 +1,37 @@
-{% extends "base.html"|pjax:request %}
 
-{% block title %}{{ page_name }}{% endblock %}
+
+
+
+
 
 {% block content %}
-    <h1>{{ page_name }}</h1>
-{% endblock %}
+    
+
+<h3> Hello, World !!! </h3>
+
+
+{% for i in stories %}
+    <h5> {{i.title}}   id-{{i.id}} </h5>
+    <img src="{{i.preview.url}}" alt="" width="40" height="40">
+    <br>
+{% endfor %}
+
+
+
+
+
+
+<br><br><br><br><br>
+<h4> Posts </h4>
+
+{% for p in posts %}
+    {{p.title}}
+    {{p.title_uz}}
+    {{p.title_ru}}
+{% endfor %}
+    
+    
+
+
+{% endblock content %}
+    
