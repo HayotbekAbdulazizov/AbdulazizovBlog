@@ -4,8 +4,8 @@
     bottom: 3rem;
 }
 .profile-description-short .profile-logo{
-    width: 6.2rem; 
-    height: 6.2rem;
+    width: 5.6rem; 
+    height: 5.6rem;
     border: 2px solid #FFFFFF;
     box-sizing: border-box;
     box-shadow: 0px 7px 20px rgba(0, 0, 0, 0.25);
@@ -14,8 +14,8 @@
     text-align: center;
 }
 .profile-description-short .profile-logo .profile-logo-image{
-    width: 123%;
-    left: 0.23em;
+    width: 115%;
+    left: 0.5em;
     bottom: 0.7em;
     /* transform: translate(-0.0.2rem, 1rem); */
 }
@@ -28,12 +28,17 @@
     height: 2px;
     background-color: rgba(28, 28, 28, 1);
     position: relative;
+    bottom: 2rem;
   }
 
 .hr-profile-top{
   bottom: 4rem;
 }
 
+
+.content-section{
+    padding:2.5rem 3rem 2.5rem 3rem !important;
+}
 
 
 
@@ -80,6 +85,173 @@
 
 
 
+.helloImg img {
+  height: auto;
+  cursor: pointer;
+  animation-name: wave-animation;
+  animation-duration: 2.5s;
+  /* Change to speed up or slow down */
+  animation-iteration-count:calc(2);
+  /* Never stop waving :) */
+  transform-origin: 70% 70%;
+}
+.helloImg img{
+  width: 3rem;
+}
+
+@keyframes wave-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  10% {
+    transform: rotate(14deg);
+  }
+
+  /* five values can be played with to make the waving more or less */
+  20% {
+    transform: rotate(-8deg);
+  }
+
+  30% {
+    transform: rotate(14deg);
+  }
+
+  40% {
+    transform: rotate(-4deg);
+  }
+
+  50% {
+    transform: rotate(10deg);
+  }
+
+  60% {
+    transform: rotate(0deg);
+  }
+
+  /* Reset for the last half to pause */
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+
+
+
+#sidebar-wrapperRight {
+    min-height: 100vh;
+    /* margin-left: -23rem; */
+    transition: margin 0.25s ease-out;
+    box-shadow: 5px 0px 15px rgba(5, 5, 5, 0.1);
+  }
+  
+  #sidebar-wrapper .sidebar-heading {
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
+  }
+  
+  #sidebar-wrapperRight .sidebar-wrapper-inner{
+    width: 20rem;
+    overflow: hidden;
+  }
+  
+  #page-content-wrapper {
+    min-width: 100vw;
+  } 
+  
+  body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
+    margin-left: 0;
+  }
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -95,6 +267,9 @@
 
 /* Mobile Devices */
 @media (max-width: 480px) {
+    .helloImg img{
+        width: 2.5rem;
+      }
     .profile-description-short{
         padding: 0px 10px 0px 10px;
         text-align: left;
@@ -128,24 +303,10 @@
     .item .card img{
         height: 10%;
     }
+    .content-section{
+        padding:2.5rem 1.5rem 2.5rem 1.5rem !important;
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -188,6 +349,9 @@
     .item .card {
         height: 16em;
         width: 12em;
+    }
+    .content-section{
+        padding:2.5rem 1rem 2.5rem 1rem !important;
     }
 
 }
