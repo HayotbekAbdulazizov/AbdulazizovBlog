@@ -15,7 +15,8 @@ $('#myTab a').on('click', function (e) {
 window.addEventListener('DOMContentLoaded', event => {
 
     // Toggle the side navigation
-    const sidebarToggle = document.body.querySelector('#sidebarToggle');
+    const sidebarToggle = document.body.querySelector('#sidebarToggle')
+    const sidebarToggle2 = document.body.querySelector('#sidebarToggle2')
     if (sidebarToggle) {
         // Uncomment Below to persist sidebar toggle between refreshes  
         // if (localStorage.getItem('sb|sidebar-toggle') === 'true') {
@@ -27,6 +28,18 @@ window.addEventListener('DOMContentLoaded', event => {
             localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
         });
     }
+
+    if (sidebarToggle2) {
+      // Uncomment Below to persist sidebar toggle between refreshes  
+      // if (localStorage.getItem('sb|sidebar-toggle') === 'true') {
+      //     document.body.classList.toggle('sb-sidenav-toggled');
+      // }
+      sidebarToggle2.addEventListener('click', event => {
+          event.preventDefault();
+          document.body.classList.toggle('sb-sidenav-toggled');
+          localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
+      });
+  }
 
 });
 

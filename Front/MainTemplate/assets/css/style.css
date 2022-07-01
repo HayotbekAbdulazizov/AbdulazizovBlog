@@ -140,8 +140,6 @@
 
 #sidebar-wrapperRight {
     min-height: 100vh;
-    /* margin-left: -23rem; */
-    transition: margin 0.25s ease-out;
     box-shadow: 5px 0px 15px rgba(5, 5, 5, 0.1);
   }
   
@@ -293,7 +291,7 @@
         position: relative;
         top: 0.4rem;
     }
-    .hidden-sm {
+    .hidden-xs{
         display: none !important;
     }
     .pofile-bg-image{ height: 1rem; }
@@ -315,9 +313,9 @@
     .profile-description-short{
         padding: 0px 10px 0px 10px;
         text-align: left;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-around;
+        flex-direction: column;
+        /* align-items: center; */
+        /* justify-content: space-around; */
         bottom: 1rem;
     } 
     .profile-description-short .profile-logo{
@@ -334,7 +332,7 @@
         position: relative;
         top: 0.4rem;
     }
-    .hidden-sm {
+    .hidden-sm{
         display: none !important;
     }
     /* .pofile-bg-image{ height: 1rem; } */
@@ -362,21 +360,21 @@
 
 /* Tablets iPads (Portrait) */
 @media (min-width: 768px) and (max-width: 991.98px){
-    .hidden-sm {
+     .hidden-md {
         display: none !important;
     }
     .profile-description-short{
         padding: 0px 10px 0px 10px;
         text-align: left;
-        flex-direction: row;
         align-items: center;
         justify-content: space-around;
         bottom: 1rem;
+        flex-direction: column;
     }
     .profile-description-short .profile-logo{
-        width: 5rem; 
-        height: 5rem;
-    }
+         width: 5rem;  
+         height: 5rem; 
+    } 
     .profile-description-short-text{
         position: relative;
         top: 0.4rem;
@@ -385,15 +383,10 @@
         width: 85%;
         background-color: rgba(255, 255, 255, 0.1);
         position: relative;
-        bottom: 0.5rem;
-    }  
+        bottom: 0.5rem;  
+    }   
 }
     
-
-#sidebarToggle{display: none;}
-@media (max-width: 1100px){
-    #sidebarToggle{display: block;}
-}
 
 
 
@@ -408,5 +401,5 @@
 
 /* Big boi Monitors */
 @media (min-width: 1281px) {
-    .hidden-lg{display: none;}
+    .hidden-xl{display: none;}
 }
